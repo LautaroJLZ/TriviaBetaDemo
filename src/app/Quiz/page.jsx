@@ -10,38 +10,91 @@ const trivia = {
   preguntas: [
     {
       id: 1,
-      pregunta: "¿Cuál es la capital de Francia?",
-      respuestas: ["Madrid", "Berlín", "París", "Londres"],
-      respuestaCorrecta: "París",
+      pregunta: "¿Qué regiones de Argentina son las más famosas por la producción de Malbec?",
+      respuestas: [
+        "Mendoza", 
+        "San Juan", 
+        "Salta", 
+        "Todas las anteriores"
+      ],
+      respuestaCorrecta: "Todas las anteriores",
     },
     {
       id: 2,
-      pregunta: "¿Cuál es la fruta que contiene potasio?",
-      respuestas: ["Frutilla", "Naranja", "Banana", "Manzana"],
-      respuestaCorrecta: "Banana",
+      pregunta: "¿Qué diferencia hay entre un Malbec joven y un Malbec Reserva?",
+      respuestas: [
+        "El tiempo de añejamiento en barrica", 
+        "La variedad de la uva", 
+        "El método de elaboración", 
+        "El precio"
+      ],
+      respuestaCorrecta: "El tiempo de añejamiento en barrica",
     },
     {
       id: 3,
-      pregunta: "¿Cuál es el resultado de 2 + 2?",
-      respuestas: ["3", "4", "5", "6"],
-      respuestaCorrecta: "4",
+      pregunta: "¿Qué tipos de Malbec existen?",
+      respuestas: [
+        "Tinto, blanco, rosado", 
+        "Dulce, seco, espumoso", 
+        "Joven, Reserva, Gran Reserva", 
+        "Todas las anteriores"
+      ],
+      respuestaCorrecta: "Todas las anteriores",
     },
     {
       id: 4,
-      pregunta: "¿Quién escribió 'Don Quijote de la Mancha'?",
+      pregunta: "¿Cuáles son algunos de los Malbec argentinos más premiados?",
       respuestas: [
-        "Miguel de Cervantes",
-        "Gabriel García Márquez",
-        "William Shakespeare",
-        "Leo Tolstoy",
+        "Catena Zapata Malbec",
+        "Rutini Wines Malbec",
+        "Norton Malbec",
+        "Todos los anteriores",
       ],
-      respuestaCorrecta: "Miguel de Cervantes",
+      respuestaCorrecta: "Todos los anteriores",
     },
     {
       id: 5,
-      pregunta: "¿Cuál es el mejor vino Argentino?",
-      respuestas: ["Filipino", "Tauren", "Cosecha Temprana", "Malbec"],
-      respuestaCorrecta: "Malbec",
+      pregunta: "¿Por qué el Malbec argentino es tan popular en el mundo?",
+      respuestas: [
+        "Por su sabor único y distintivo", 
+        "Por su relación calidad-precio", 
+        "Por ser un vino versátil que marida con muchas comidas", 
+        "Todas las anteriores"
+      ],
+      respuestaCorrecta: "Todas las anteriores",
+    },
+    {
+      id: 6,
+      pregunta: "¿Qué factores influyen en el estilo de un Malbec?",
+      respuestas: [
+        "Clima, suelo, altitud, método de elaboración", 
+        "La marca de la bodega", 
+        "El precio del vino", 
+        "La variedad de la uva"
+      ],
+      respuestaCorrecta: "Clima, suelo, altitud, método de elaboración",
+    },
+    {
+      id: 7,
+      pregunta: "¿Qué es la maceración carbónica y cómo afecta al Malbec?",
+      respuestas: [
+        "Es un método de elaboración que aporta color y taninos al vino", 
+        "Es una técnica de marketing para vender más Malbec", 
+        "Es un tipo de uva que se utiliza para hacer Malbec", 
+        "Es una enfermedad que afecta a las viñas de Malbec"
+      ],
+      respuestaCorrecta: "Es un método de elaboración que aporta color y taninos al vino",
+    },
+    {
+      id: 8,
+      pregunta: "¿Qué diferencia hay entre un Malbec de Mendoza y un Malbec de San Juan?",
+      respuestas: [
+        "El clima y el suelo", 
+        "La variedad de la uva", 
+        "El método de elaboración", 
+        "El precio"
+      ],
+      respuestaCorrecta: "El clima y el suelo",
     },
   ],
 };
@@ -108,7 +161,7 @@ const Quiz = () => {
   };
   return (
     <div className="bg-[url('../views/img/bg_uvas_rojo.jpg')] justify-center items-center min-h-screen p-5 ">
-      <div className={`bg-rojoClaro ${fontSageffine.className}`}>
+      <div className={fontSageffine.className}>
         <div className="absolute top-0 right-0 m-7 text-4xl">
           Trivia{" "}
           <span className="bg-white text-red-900 rounded-md p-2">Malbec</span>
@@ -128,7 +181,7 @@ const Quiz = () => {
                   {"º Pregunta"}
                 </h2>
               </div>
-              <div className="w-[80%] md:w-[70%] lg:w-[80%]">
+              <div className="w-[80%]">
                 <div className={fontSageffine.className}>
                   <h3 className="text-white text-4xl md:text-5xl lg:text-7xl p-3">
                     {preguntas[preguntaActiva].pregunta}
@@ -185,6 +238,14 @@ const Quiz = () => {
             </div>
           ) : (
             <div className="w-[100%] md:w-[70%] lg:w-[35%] backdrop-blur-sm bg-white/[.06] text-white p-5 text-xl border border-white rounded-lg mt-20 mx-auto">
+              <div>
+                <div className="flex mx-auto mt-4">
+                  <div className="pt-0 w-full h-fit mb-6">
+                    <canvas id="myChart"></canvas>
+                  </div>
+                </div>
+              </div>
+
               <div className={fontSerif.className}>
                 <h3 className="text-2xl font-bold pl-2">Resultados:</h3>
                 <p className="p-2">
@@ -213,6 +274,11 @@ const Quiz = () => {
                   Puntaje:{" "}
                   <span className="text-sky-400">{resultado.puntaje}</span>
                 </p>
+                <div className="btn shadow-glow">
+                  <Link href="/" >
+                    Volver a Jugar
+                  </Link>
+                </div>
               </div>
             </div>
           )}
